@@ -51,3 +51,101 @@ Before running the project, ensure you have the following installed:
    ```bash
    git clone https://github.com/your-username/multi-tenancy-saas-frontend.git
    cd multi-tenancy-saas-frontend
+   ```
+    Install Dependencies:
+    bash
+    Copy
+
+    npm install
+
+    Set Up Environment Variables:
+
+        Create a .env file in the root directory and add the following variables:
+        env
+        Copy
+
+        REACT_APP_API_URL=http://localhost:3000
+
+    Run the Application:
+    bash
+    Copy
+
+    npm start
+
+    Open the Application:
+
+        Visit http://localhost:3000 in your browser.
+
+
+🖥️ Screenshots
+Tenant Management Dashboard
+
+Dashboard
+Data Usage Chart
+
+Chart
+🛠️ Development
+Running the Development Server
+bash
+Copy
+
+npm start
+
+Building for Production
+bash
+Copy
+
+npm run build
+
+Running Tests
+bash
+Copy
+
+npm test
+
+🤝 Contributing
+
+Contributions are welcome! Follow these steps to contribute:
+
+    Fork the repository.
+
+    Create a new branch:
+    bash
+    Copy
+
+    git checkout -b feature/your-feature-name
+
+    Commit your changes:
+    bash
+    Copy
+
+    git commit -m "Add your feature"
+
+    Push to the branch:
+    bash
+    Copy
+
+    git push origin feature/your-feature-name
+
+    Open a pull request.
+
+📄 License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+🙏 Acknowledgments
+
+    React for building interactive UIs.
+
+    Chart.js for beautiful data visualizations.
+
+    Axios for making API requests.
+
+📧 Contact
+
+For questions or feedback, feel free to reach out:
+
+    Name: Your Name
+
+    Email: your.email@example.com
+
+    GitHub: your-username
