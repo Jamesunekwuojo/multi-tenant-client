@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles/components/TenantForm.css';
+
 
 const TenantForm = ({ onSubmit, initialData }) => {
     const [name, setName] = useState(initialData?.name || '');

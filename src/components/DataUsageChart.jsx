@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import './styles/components/DataUsageChart.css';
+
 
 const DataUsageChart = ({ data }) => {
     const chartRef = useRef(null);
