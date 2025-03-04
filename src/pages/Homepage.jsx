@@ -14,7 +14,7 @@ function Home() {
             <span className="text-xl  font-bold">TenantHub</span>
           </div>
           <nav className="flex items-center gap-4">
-            <Link href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground">
+{/*             <Link href="#features" className="text-sm font-medium text-muted-foreground hover:text-foreground">
               Features
             </Link>
             <Link href="#pricing" className="text-sm font-medium text-muted-foreground hover:text-foreground">
@@ -22,7 +22,7 @@ function Home() {
             </Link>
             <Link href="#testimonials" className="text-sm font-medium text-muted-foreground hover:text-foreground">
               Testimonials
-            </Link>
+            </Link> */}
             <Link href="/login">
               <button variant="ghost" className="text-sm">
                 Login
