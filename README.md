@@ -63,16 +63,16 @@ Before running the project, ensure you have the following installed:
     - Create a .env file in the root directory and add the following variables:
         ```env
 
-        REACT_APP_API_URL=http://localhost:3000
+        VITE_APP_API_URL=http://localhost:5173
 
 4. **Run the Application**:
     ```bash
 
-    npm start
+    npm run dev
 
 5. Open the Application:
   ```bash
-   Visit http://localhost:3000 in your browser.
+   Visit http://localhost:5173 in your browser.
 ```
 
 
