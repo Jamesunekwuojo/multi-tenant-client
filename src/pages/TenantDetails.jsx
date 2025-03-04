@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles/components/TenantDetails.css';
+
 
 const TenantDetails = ({ tenant }) => {
     return (

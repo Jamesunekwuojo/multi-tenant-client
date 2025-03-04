@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles/components/SearchFilter.css';
+
 
 const SearchFilter = ({ onSearch, onFilter }) => {
     const [searchTerm, setSearchTerm] = useState('');
