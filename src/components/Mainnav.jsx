@@ -9,16 +9,16 @@ const Mainnav = () => {
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2 mx-4">
             <Building2 className="h-6 w-6 text-primary" />
-            <span className="text-xl  font-bold">TenantHub</span>
+            <span className="text-xl cursor-pointer font-bold">TenantHub</span>
           </div>
           <nav className="flex items-center gap-4">
             <Link
               href="#features"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer"
             >
-              Features
+              Home
             </Link>
-            <Link
+            {/* <Link
               href="#pricing"
               className="text-sm font-medium text-muted-foreground hover:text-foreground"
             >
@@ -29,14 +29,14 @@ const Mainnav = () => {
               className="text-sm font-medium text-muted-foreground hover:text-foreground"
             >
               Testimonials
-            </Link>
+            </Link> */}
             <Link href="/login">
-              <button variant="ghost" className="text-sm">
+              <button variant="ghost " className="text-sm text-white px-4 py-2 rounded-md bg-black hover:bg-black cursor-pointer">
                 Login
               </button>
             </Link>
             <Link href="/signup">
-              <button className="text-sm">Sign Up</button>
+              <button className="text-sm cursor-pointer">Sign Up</button>
             </Link>
           </nav>
         </div>
