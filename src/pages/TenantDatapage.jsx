@@ -38,7 +38,7 @@ const TenantDataPage = ({ tenantId }) => {
 
     return (
         <div>
-            <h1>Tenant Data Management</h1>
+            <h1 className="text-3xl">Tenant Data Management</h1>
 
             <FilterData/>
             <TenantDataList
