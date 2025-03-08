@@ -2,15 +2,18 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import TenantDataForm from '../components/TenantDataForm';
 import TenantDataList from '../components/TenantDataList';
+import SearchFilter from '../components/SearchFilter';
+import FilterData from '../components/FilterData';
+
 
 
 const TenantDataPage = ({ tenantId }) => {
     const [tenantData, setTenantData] = useState([]);
-    const [editingData, setEditingData] = useState(null);
+   
 
-    useEffect(() => {
-        fetchTenantData();
-    }, [tenantId]);
+    // useEffect(() => {
+    //     fetchTenantData();
+    // }, [tenantId]);
 
     const fetchTenantData = async () => {
         const response = await axios.get(`/api/data?tenantId=${tenantId}`);
@@ -22,10 +25,10 @@ const TenantDataPage = ({ tenantId }) => {
         fetchTenantData();
     };
 
-    const handleUpdate = async (data) => {
-        await axios.put(`/api/data/${data.id}`, data);
-        fetchTenantData();
-    };
+    // const handleUpdate = async (data) => {
+    //     await axios.put(`/api/data/${data.id}`, data);
+    //     fetchTenantData();
+    // };
 
     
     const handleDelete = async (id) => {
@@ -36,15 +39,17 @@ const TenantDataPage = ({ tenantId }) => {
     return (
         <div>
             <h1>Tenant Data Management</h1>
-            <TenantDataForm
-                onSubmit={editingData ? handleUpdate : handleCreate}
-                initialData={editingData}
-            />
+
+            <FilterData/>
             <TenantDataList
                 data={tenantData}
-                onEdit={setEditingData}
                 onDelete={handleDelete}
             />
+            {/* <TenantDataForm
+                onSubmit={ handleCreate}
+                initialData={tenantId}
+            /> */}
+      
         </div>
     );
 };

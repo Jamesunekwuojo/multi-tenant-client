@@ -9,10 +9,12 @@ import Login from "./components/Login.jsx";
 import Adminpage from "./pages/Tenantpage.jsx";
 import Adminsidebar from "./pages/Adminsidebar.jsx";
 import TenantDataForm from "./components/TenantDataForm.jsx";
+import TenantForm from "./components/TenantForm.jsx";
 
 import TenantDataList from "./components/TenantDataDetails.jsx";
 
 import TenantDatapage from "./pages/TenantDatapage.jsx"
+import Tenantpage from "./pages/Tenantpage.jsx";
 
 
 const App = () => (
@@ -34,15 +36,15 @@ const App = () => (
         <Route path="/dashboard" element={<Adminsidebar />} >
           <Route index element={<Dashboard />} />
 
-          <Route path="tenants" element={<Dashboard />} />
+          <Route path="tenants" element={<Tenantpage/>} />
 
-          <Route path="data-page" element={<Dashboard />} />
+          <Route path="data-page" element={<TenantDatapage />} />
 
           <Route path="tenant-analytics" element={<Dashboard />} />
 
-          <Route path="create-tenant" element={<Dashboard />} />
+          <Route path="create-tenant" element={<TenantForm/>} />
 
-          <Route path="tenant-data" element={<Dashboard />} />
+          <Route path="tenant-data" element={<TenantDataForm/>} />
 
           {/* <Route path="" element={<TenantDataForm/>}/>
 
