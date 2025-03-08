@@ -9,11 +9,12 @@ const Mainnav = () => {
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-2 mx-4">
             <Building2 className="h-6 w-6 text-primary" />
-            <span className="text-xl cursor-pointer font-bold">TenantHub</span>
+            <Link to="/" className="text-xl cursor-pointer font-bold">TenantHub</Link>
+
           </div>
           <nav className="flex items-center gap-4">
             <Link
-              href="#features"
+              to="/"
               className="text-sm font-medium text-muted-foreground hover:text-foreground cursor-pointer"
             >
               Home

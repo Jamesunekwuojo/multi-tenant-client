@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-
 const SearchFilter = ({ onSearch, onFilter }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [filter, setFilter] = useState('');
@@ -16,14 +15,19 @@ const SearchFilter = ({ onSearch, onFilter }) => {
     };
 
     return (
-        <div className="search-filter">
+        <div className="w-full flex justify-center items-center gap-2 py-4">
             <input
                 type="text"
                 placeholder="Search tenants..."
                 value={searchTerm}
                 onChange={handleSearch}
+                className="px-4 py-2 border rounded"
             />
-            <select value={filter} onChange={handleFilter}>
+            <select
+                value={filter}
+                onChange={handleFilter}
+                className="px-4 py-2 border rounded"
+            >
                 <option value="">All</option>
                 <option value="active">Active</option>
                 <option value="inactive">Inactive</option>

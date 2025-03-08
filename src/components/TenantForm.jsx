@@ -1,34 +1,69 @@
-import React, { useState } from 'react';
+import { Link } from "react-router-dom";
+import { Building2 } from "lucide-react";
 
+import { useState } from "react";
 
-const TenantForm = ({ onSubmit, initialData }) => {
-    const [name, setName] = useState(initialData?.name || '');
-    const [subdomain, setSubdomain] = useState(initialData?.subdomain || '');
+export default function TenantForm({onSubmit, initialData}) {
+  const [name, setName] = useState(initialData?.name || "");
+  const [subdomain, setSubdomain] = useState(initialData?.subdomain || "");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        onSubmit({ name, subdomain });
-    };
+  const handleSubmit = (e) => { 
+    e.preventDefault();
+  };
 
-    return (
-        <form onSubmit={handleSubmit} className="tenant-form">
-            <input
-                type="text"
-                placeholder="Name"
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-4">
+      <Link to="/" className="absolute left-8 top-8 flex items-center gap-2">
+        <Building2 className="h-6 w-6 text-blue-600" />
+        <span className="text-xl font-bold">TenantHub</span>
+      </Link>
+
+      <div className="w-full max-w-md bg-white rounded-xl shadow-md p-6">
+        <div className="space-y-1 mb-6">
+          <h2 className="text-2xl font-bold">Add  New Tenant</h2>
+          <p className="text-gray-600">Enter information of new tenant</p>
+        </div>
+
+        <form className="space-y-4" onSubmit={handleSubmit}>
+          <div className="grid grid-cols-1 gap-4">
+            <div className="space-y-2">
+              <label htmlFor="firstName" className="block text-sm font-medium">
+                Tenant Name
+              </label>
+              <input
                 value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-            />
-            <input
-                type="text"
-                placeholder="Subdomain"
+                placeholder="John"
+                className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+              />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="lastName" className="block text-sm font-medium">
+                Tenant Sub domain
+              </label>
+              <input
                 value={subdomain}
-                onChange={(e) => setSubdomain(e.target.value)}
-                required
-            />
-            <button type="submit">{initialData ? 'Update' : 'Create'} Tenant</button>
-        </form>
-    );
-};
+                placeholder="Doe"
+                className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
+              />
+            </div>
+          </div>
 
-export default TenantForm;
+
+          <button
+            type="submit"
+            className="w-full rounded-md bg-black py-2 text-white text-sm font-medium cursor-pointer hover:bg-black"
+          >
+            Add Tenant
+          </button>
+        </form>
+
+        {/* <div className="mt-4 text-center text-sm">
+          Already have an account?{" "}
+          <Link to="/login" className="text-blue-600 hover:underline">
+            Login
+          </Link>
+        </div> */}
+      </div>
+    </div>
+  );
+}

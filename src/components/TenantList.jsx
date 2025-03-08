@@ -4,7 +4,7 @@ import axios from "axios";
 const TenantList = ({ tenants, onEdit, onDelete }) => {
   return (
     <div className="tenant-list">
-      <h2>Tenants</h2>
+      
       <ul>
         {/* {tenants.map((tenant) => (
           <li key={tenant.id}>
