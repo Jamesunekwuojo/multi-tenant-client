@@ -22,8 +22,8 @@ const Feature3 = () => {
                 Get Started <ArrowRight className="h-4 w-4" />
               </button>
             </Link>
-            <Link to="/create-tenant">
-              <button className="inline-flex items-center rounded-md border border-input bg-background px-6 py-3 text-lg font-medium shadow-sm hover:bg-accent hover:text-accent-foreground">
+            <Link to="/dashboard">
+              <button className="inline-flex items-center cursor-pointer rounded-md border border-input bg-background px-6 py-3 text-lg font-medium shadow-sm hover:bg-accent hover:text-accent-foreground">
                 Create Tenant
               </button>
             </Link>

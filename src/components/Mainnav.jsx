@@ -19,26 +19,15 @@ const Mainnav = () => {
             >
               Home
             </Link>
-            {/* <Link
-              href="#pricing"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground"
-            >
-              Pricing
-            </Link>
-            <Link
-              href="#testimonials"
-              className="text-sm font-medium text-muted-foreground hover:text-foreground"
-            >
-              Testimonials
-            </Link> */}
-            <Link href="/login">
+         
+            <Link to="/login">
               <button variant="ghost " className="text-sm text-white px-4 py-2 rounded-md bg-black hover:bg-black cursor-pointer">
                 Login
               </button>
             </Link>
-            <Link href="/signup">
+            {/* <Link href="/signup">
               <button className="text-sm cursor-pointer">Sign Up</button>
-            </Link>
+            </Link> */}
           </nav>
         </div>
       </header>
