@@ -13,38 +13,35 @@ import TenantForm from "./components/TenantForm.jsx";
 
 import TenantDataList from "./components/TenantDataDetails.jsx";
 
-import TenantDatapage from "./pages/TenantDatapage.jsx"
+import TenantDatapage from "./pages/TenantDatapage.jsx";
 import Tenantpage from "./pages/Tenantpage.jsx";
 
+import ProtectedRoute from "./protectedRoute.jsx";
 
 const App = () => (
   <div className="flex min-h-screen flex-col ">
     {/* <Mainnav/> */}
-    
+
     <Router>
-      <Mainnav/> 
+      <Mainnav />
       <Routes>
-     
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
-    
 
-
-      
-{/* Embedded Route */}
-        <Route path="/dashboard" element={<Adminsidebar />} >
+        {/* Embedded Route */}
+        <Route path="/dashboard" element={<Adminsidebar />}>
           <Route index element={<Dashboard />} />
 
-          <Route path="tenants" element={<Tenantpage/>} />
+          <Route path="tenants" element={<Tenantpage />} />
 
           <Route path="data-page" element={<TenantDatapage />} />
 
           <Route path="tenant-analytics" element={<Dashboard />} />
 
-          <Route path="create-tenant" element={<TenantForm/>} />
+          <Route path="create-tenant" element={<TenantForm />} />
 
-          <Route path="tenant-data" element={<TenantDataForm/>} />
+          <Route path="tenant-data" element={<TenantDataForm />} />
 
           {/* <Route path="" element={<TenantDataForm/>}/>
 
@@ -57,11 +54,9 @@ const App = () => (
 
           <Route path="" element={<TenantDataForm/>}/>
          */}
-
         </Route>
-
       </Routes>
-      <Footer/>
+      <Footer />
     </Router>
 
     {/* <Footer/> */}
