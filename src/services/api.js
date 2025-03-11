@@ -5,9 +5,27 @@ const api = axios.create({
     baseURL:import.meta.env.VITE_API_URL,
     headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem('token')}` 
     },
 
 });
+
+// Admin apis
+
+export const userFetch =  () => api.get("/api/admin", {
+    credentials: "include", // Include cookies for session-based auth
+    withCredentials: true,
+});
+
+
+export const loginUser = (loginData) => api.post('/api/admin/login', loginData);
+
+
+export const signupUser = (signupData) => api.post('/api/admin/signup', signupData);
+
+
+
+// Tenant api
 
 export const getTenants = () => api.get('/api/tenants');
 

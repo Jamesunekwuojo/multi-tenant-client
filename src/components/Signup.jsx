@@ -19,10 +19,10 @@ export default function Signup() {
           <div className="grid grid-cols-1 gap-4">
             <div className="space-y-2">
               <label htmlFor="firstName" className="block text-sm font-medium">
-                First name
+                Admin name
               </label>
               <input
-                id="firstName"
+                name="name"
                 placeholder="John"
                 className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
               />
@@ -44,7 +44,7 @@ export default function Signup() {
               Email
             </label>
             <input
-              id="email"
+              name="email"
               type="email"
               placeholder="name@example.com"
               className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
@@ -53,16 +53,17 @@ export default function Signup() {
 
           <div className="space-y-2">
             <label htmlFor="password" className="block text-sm font-medium">
+
               Password
             </label>
             <input
-              id="password"
+              name="password"
               type="password"
               className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
             />
           </div>
 
-          <div className="space-y-2">
+          {/* <div className="space-y-2">
             <label htmlFor="confirmPassword" className="block text-sm font-medium">
               Confirm Password
             </label>
@@ -71,7 +72,7 @@ export default function Signup() {
               type="password"
               className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
             />
-          </div>
+          </div> */}
 
           <button
             type="submit"
