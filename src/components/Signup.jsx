@@ -1,7 +1,42 @@
 import { Link } from "react-router-dom";
 import { Building2 } from "lucide-react";
+import { useAuth } from "../customHook/useAuth";
+
+import { useNavigate } from "react-router-dom";
+
+import { useState } from "react";
 
 export default function Signup() {
+  const {signupUser} = useAuth();
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({name: "", email: "", password: ""})
+
+  const handleChange = async (e) => {
+    const {name, value} = e.target;
+    setFormData({...formData, [name]: value})
+  }
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+
+      const result = await signupUser(formData);
+
+      if(result.success){
+        console.log("User created successfully");
+        navigate("/dashboard");
+        
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+
+  
+  };
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-4">
       <Link to="/" className="absolute left-8 top-8 flex items-center gap-2">
@@ -15,7 +50,7 @@ export default function Signup() {
           <p className="text-gray-600">Enter your information to create an account</p>
         </div>
 
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 gap-4">
             <div className="space-y-2">
               <label htmlFor="firstName" className="block text-sm font-medium">
@@ -23,20 +58,13 @@ export default function Signup() {
               </label>
               <input
                 name="name"
+                onChange={handleChange}
+                value={formData.name}
                 placeholder="John"
                 className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
               />
             </div>
-            {/* <div className="space-y-2">
-              <label htmlFor="lastName" className="block text-sm font-medium">
-                Last name
-              </label>
-              <input
-                id="lastName"
-                placeholder="Doe"
-                className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
-              />
-            </div> */}
+           
           </div>
 
           <div className="space-y-2">
@@ -44,8 +72,11 @@ export default function Signup() {
               Email
             </label>
             <input
+
               name="email"
+              onChange={handleChange}
               type="email"
+              value={formData.email}
               placeholder="name@example.com"
               className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
             />
@@ -57,22 +88,16 @@ export default function Signup() {
               Password
             </label>
             <input
+
               name="password"
+              onChange={handleChange}
+              value={formData.password}
               type="password"
               className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
             />
           </div>
 
-          {/* <div className="space-y-2">
-            <label htmlFor="confirmPassword" className="block text-sm font-medium">
-              Confirm Password
-            </label>
-            <input
-              id="confirmPassword"
-              type="password"
-              className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
-            />
-          </div> */}
+          
 
           <button
             type="submit"

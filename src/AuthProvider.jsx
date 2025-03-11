@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-// Create the AuthContext
+
 import { AuthContext } from "./AuthContext";
 
 import { loginUser, signupUser, userFetch } from "./services/api";
