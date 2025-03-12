@@ -16,7 +16,7 @@ import TenantDataList from "./components/TenantDataDetails.jsx";
 import TenantDatapage from "./pages/TenantDatapage.jsx";
 import Tenantpage from "./pages/Tenantpage.jsx";
 
-import ProtectedRoute from "./protectedRoute.jsx";
+
 
 const App = () => (
   <div className="flex min-h-screen flex-col ">
