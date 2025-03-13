@@ -13,10 +13,10 @@ import TenantForm from "./components/TenantForm.jsx";
 
 import TenantDataList from "./components/TenantDataDetails.jsx";
 
+import ProtectedRoute from "./ProtectedRoute.jsx";
+
 import TenantDatapage from "./pages/TenantDatapage.jsx";
 import Tenantpage from "./pages/Tenantpage.jsx";
-
-
 
 const App = () => (
   <div className="flex min-h-screen flex-col ">
@@ -30,7 +30,14 @@ const App = () => (
         <Route path="/login" element={<Login />} />
 
         {/* Embedded Route */}
-        <Route path="/dashboard" element={<Adminsidebar />}>
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute>
+              <Adminsidebar />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<Dashboard />} />
 
           <Route path="tenants" element={<Tenantpage />} />

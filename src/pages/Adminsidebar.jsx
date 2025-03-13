@@ -14,12 +14,21 @@ import {
   Settings,
 } from "lucide-react";
 
+import { useAuth } from "../customHook/useAuth";
+
 function Adminsidebar() {
   const [collapsed, setCollapsed] = useState(false);
 
   const toggleSidebar = () => {
     setCollapsed(!collapsed);
   };
+
+  const {logout} = useAuth()
+
+  const handleLogout = async() => {
+    await logout()
+
+  }
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -86,13 +95,7 @@ function Adminsidebar() {
             </Link>
 
             
-            {/* <Link
            
-              className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
-            >
-              <Settings className="h-4 w-4" />
-              <span className={`${collapsed ? 'hidden' : ''}`}>Settings</span>
-            </Link> */}
 
           </div>
           <div className={`px-4 py-2 text-sm font-medium text-gray-500 ${collapsed ? 'hidden' : ''}`}>
@@ -109,13 +112,17 @@ function Adminsidebar() {
             </div>
             <ChevronDown className={`ml-auto h-4 w-4 ${collapsed ? 'hidden' : ''}`} />
           </div>
-          <Link
-            to="/logout"
-            className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
+          <button>
+
+          </button>
+
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer"
           >
             <LogOut className="h-4 w-4" />
             <span className={`${collapsed ? 'hidden' : ''}`}>Logout</span>
-          </Link>
+          </button>
           <button
             onClick={toggleSidebar}
             className="flex items-center
