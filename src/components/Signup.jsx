@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export default function Signup() {
-  const {signupUser} = useAuth();
+  const {signup} = useAuth();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({name: "", email: "", password: ""})
@@ -23,7 +23,7 @@ export default function Signup() {
 
     try {
 
-      const result = await signupUser(formData);
+      const result = await signup(formData);
 
       if(result.success){
         console.log("User created successfully");
@@ -32,7 +32,8 @@ export default function Signup() {
       }
 
     } catch (error) {
-      console.log(error);
+      
+      console.log(error.message);
     }
 
   
@@ -53,10 +54,11 @@ export default function Signup() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 gap-4">
             <div className="space-y-2">
-              <label htmlFor="firstName" className="block text-sm font-medium">
+              <label htmlFor="Name" className="block text-sm font-medium">
                 Admin name
               </label>
               <input
+                type="text"
                 name="name"
                 onChange={handleChange}
                 value={formData.name}
@@ -72,7 +74,6 @@ export default function Signup() {
               Email
             </label>
             <input
-
               name="email"
               onChange={handleChange}
               type="email"
@@ -88,7 +89,6 @@ export default function Signup() {
               Password
             </label>
             <input
-
               name="password"
               onChange={handleChange}
               value={formData.password}

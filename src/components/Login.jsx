@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-  const { loginUser } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate()
 
   const [formData, setFormData] = useState({
@@ -23,10 +23,10 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      const result = await loginUser(formData);
+      const result = await login(formData);
 
       if (result.success) {
-        console.log("User created successfully");
+        console.log("User login successfully");
         navigate("/dashboard");
       }
     } catch (error) {
@@ -79,7 +79,6 @@ export default function Login() {
             <input
 
               name="password"
-
               type="password"
               className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
             />
@@ -87,7 +86,7 @@ export default function Login() {
 
           <button
             type="submit"
-            className="w-full rounded-md bg-black py-2 text-white text-sm font-medium hover:bg-black"
+            className="w-full rounded-md bg-black py-2 text-white text-sm font-medium hover:bg-black cursor-pointer"
           >
             Login
           </button>

@@ -22,7 +22,7 @@ function Adminsidebar() {
   };
 
   return (
-    <div className="flex  bg-gray-100">
+    <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
       <div className={`bg-white border-r transition-all duration-300 ${collapsed ? 'w-16' : 'w-64'}`}>
         <div className="mt-4">
