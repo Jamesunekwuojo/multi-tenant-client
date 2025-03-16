@@ -5,9 +5,36 @@ const api = axios.create({
     baseURL:import.meta.env.VITE_API_URL,
     headers: {
         'Content-Type': 'application/json',
+     
     },
 
 });
+
+// Interceptor to dynamically add token only when it exists
+api.interceptors.request.use((config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+});
+
+// Admin apis
+
+export const userFetch =  () => api.get("/api/admin", {
+    credentials: "include", // Include cookies for session-based auth
+    withCredentials: true,
+});
+
+
+export const loginUser = (loginData) => api.post('/api/admin/login', loginData);
+
+
+export const signupUser = (signupData) => api.post('/api/admin/signup', signupData);
+
+
+
+// Tenant api
 
 export const getTenants = () => api.get('/api/tenants');
 

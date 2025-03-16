@@ -1,7 +1,39 @@
 import { Link } from "react-router-dom";
 import { Building2 } from "lucide-react";
+import { useAuth } from "../customHook/useAuth.jsx";
+import { useState } from "react";
+
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const { login } = useAuth();
+  const navigate = useNavigate()
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = async (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const result = await login(formData);
+
+      if (result.success) {
+        console.log("User login successfully");
+        navigate("/dashboard");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-4">
       <Link to="/" className="absolute left-8 top-8 flex items-center gap-2">
@@ -12,16 +44,20 @@ export default function Login() {
       <div className="w-full max-w-md bg-white rounded-xl shadow-md p-6">
         <div className="space-y-1 mb-6">
           <h2 className="text-2xl font-bold">Login</h2>
-          <p className="text-gray-600">Enter your credentials to access your account</p>
+          <p className="text-gray-600">
+            Enter your credentials to access your account
+          </p>
         </div>
 
-        <form className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <label htmlFor="email" className="block text-sm font-medium">
               Email
             </label>
+
             <input
-              id="email"
+              name="email"
+              onChange={handleChange}
               type="email"
               placeholder="name@example.com"
               className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
@@ -41,7 +77,8 @@ export default function Login() {
               </Link>
             </div>
             <input
-              id="password"
+
+              name="password"
               type="password"
               className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
             />
@@ -49,7 +86,7 @@ export default function Login() {
 
           <button
             type="submit"
-            className="w-full rounded-md bg-black py-2 text-white text-sm font-medium hover:bg-black"
+            className="w-full rounded-md bg-black py-2 text-white text-sm font-medium hover:bg-black cursor-pointer"
           >
             Login
           </button>

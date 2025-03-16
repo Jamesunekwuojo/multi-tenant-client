@@ -1,76 +1,42 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import axios from "axios";
 import {
   ArrowLeft,
+  ArrowRight,
   BarChart3,
   Building2,
   ChevronDown,
   CreditCard,
-  Download,
   FileText,
   Home,
-  LineChart,
   LogOut,
-  PieChart,
   Plus,
   Settings,
-  Users,
 } from "lucide-react";
 
-import SearchFilter from "../components/SearchFilter";
-
-import TenantForm from "../components/TenantForm";
-
-import TenantList from "../components/TenantList";
-
-
-
-
+import { useAuth } from "../customHook/useAuth";
 
 function Adminsidebar() {
-  const [tenants, setTenants] = useState([]);
-  const [editingTenant, setEditingTenant] = useState(null);
-//   const [dataUsage, setDataUsage] = useState([]);
+  const [collapsed, setCollapsed] = useState(false);
 
-//   useEffect(() => {
-//     fetchTenants();
-//     fetchDataUsage();
-//   }, []);
+  const toggleSidebar = () => {
+    setCollapsed(!collapsed);
+  };
 
+  const {logout} = useAuth()
 
-//   const handleCreate = async (tenant) => {
-//     await axios.post('/api/tenants', tenant);
-//     fetchTenants();
-// };
+  const handleLogout = async() => {
+    await logout()
 
-//   const fetchTenants = async () => {
-//     const response = await axios.get("/api/tenants");
-//     setTenants(response.data);
-//   };
-
-//   const fetchDataUsage = async () => {
-//     const response = await axios.get("/api/data-usage");
-//     setDataUsage(response.data);
-//   };
-
-//   const handleEdit = async (tenant) => {
-//     await axios.put(`/api/tenants/${tenant.id}`, tenant);
-//     fetchTenants();
-//   };
-
-//   const handleDelete = async (id) => {
-//     await axios.delete(`/api/tenants/${id}`);
-//     fetchTenants();
-//   };
+  }
 
   return (
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
-      <div className="w-64 bg-white border-r">
+      <div className={`bg-white border-r transition-all duration-300 ${collapsed ? 'w-16' : 'w-64'}`}>
         <div className="mt-4">
           <div className="space-y-1">
-            <div className="px-4 py-2 text-sm font-medium text-gray-500">
+            <div className={`px-4 py-2 text-sm font-medium text-gray-500 ${collapsed ? 'hidden' : ''}`}>
               Overview
             </div>
             <Link
@@ -78,7 +44,7 @@ function Adminsidebar() {
               className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
             >
               <Home className="h-4 w-4" />
-              <span>Dashboard</span>
+              <span className={`${collapsed ? 'hidden' : ''}`}>Dashboard</span>
             </Link>
 
             <Link
@@ -86,7 +52,7 @@ function Adminsidebar() {
               className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
             >
               <Building2 className="h-4 w-4" />
-              <span>Tenants view</span>
+              <span className={`${collapsed ? 'hidden' : ''}`}>Tenants view</span>
             </Link>
 
             <Link
@@ -94,62 +60,77 @@ function Adminsidebar() {
               className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
             >
               <FileText className="h-4 w-4" />
-              <span>Tenants Data view</span>
+              <span className={`${collapsed ? 'hidden' : ''}`}>Tenants Data view</span>
             </Link>
 
             <Link
-              href="/dashboard/tenant-analytics"
+              to="/dashboard/tenant-analytics"
               className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
             >
               <BarChart3 className="h-4 w-4" />
-              <span>Tenant Analytics</span>
+              <span className={`${collapsed ? 'hidden' : ''}`}>Tenant Analytics</span>
             </Link>
           </div>
         </div>
         <div className="mt-4">
-          <div className="px-4 py-2 text-sm font-medium text-gray-500">
+
+          <div className={`px-4 py-2 text-sm font-medium text-gray-500 ${collapsed ? 'hidden' : ''}`}>
             Management
           </div>
+
           <div className="space-y-1">
             <Link
               to="/dashboard/create-tenant"
               className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
             >
               <Plus className="h-4 w-4" />
-              <span>Create Tenant</span>
+              <span className={`${collapsed ? 'hidden' : ''}`}>Create Tenant</span>
             </Link>
             <Link
               to="/dashboard/tenant-data"
               className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
             >
               <FileText className="h-4 w-4" />
-              <span>Tenant Data Form</span>
+              <span className={`${collapsed ? 'hidden' : ''}`}>Tenant Data Form</span>
             </Link>
-            <Link
-       
-              className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
-            >
-              <Settings className="h-4 w-4" />
-              <span>Settings</span>
-            </Link>
+
+            
+           
+
           </div>
+          <div className={`px-4 py-2 text-sm font-medium text-gray-500 ${collapsed ? 'hidden' : ''}`}>
+            Settings
+          </div>
+
         </div>
         <div className="mt-auto">
           <div className="flex items-center gap-2 px-4 py-2">
             <div className="h-6 w-6 rounded-full bg-gray-300"></div>
-            <div className="flex flex-col">
+            <div className={`flex flex-col ${collapsed ? 'hidden' : ''}`}>
               <span className="text-sm font-medium">John Doe</span>
               <span className="text-xs text-gray-500">Admin</span>
             </div>
-            <ChevronDown className="ml-auto h-4 w-4" />
+            <ChevronDown className={`ml-auto h-4 w-4 ${collapsed ? 'hidden' : ''}`} />
           </div>
-          <Link
-            href="/logout"
-            className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
+          <button>
+
+          </button>
+
+          <button
+            onClick={handleLogout}
+            className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200 cursor-pointer"
           >
             <LogOut className="h-4 w-4" />
-            <span>Logout</span>
-          </Link>
+            <span className={`${collapsed ? 'hidden' : ''}`}>Logout</span>
+          </button>
+          <button
+            onClick={toggleSidebar}
+            className="flex items-center
+             justify-center  py-2 text-sm text-white
+             bg-black hover:bg-black w-full cursor-pointer"
+          >
+            {collapsed ? <ArrowRight className="h-4 w-4" /> : <ArrowLeft className="h-4 w-4" />}
+          </button>
         </div>
       </div>
 
@@ -157,9 +138,6 @@ function Adminsidebar() {
       <div className="flex-1 p-6">
         <Outlet />
       </div>
-     
-
-   
     </div>
   );
 }
