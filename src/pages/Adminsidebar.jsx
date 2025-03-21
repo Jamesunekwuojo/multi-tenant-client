@@ -14,7 +14,7 @@ import {
   Settings,
 } from "lucide-react";
 
-import { useAuth } from "../customHook/useAuth";
+import { useAuth } from "../customHook/useAuth.jsx";
 
 function Adminsidebar() {
   const [collapsed, setCollapsed] = useState(false);
@@ -23,7 +23,11 @@ function Adminsidebar() {
     setCollapsed(!collapsed);
   };
 
-  const {logout} = useAuth()
+  const {logout, user} = useAuth()
+
+  const username = localStorage.getItem('username')
+
+
 
   const handleLogout = async() => {
     await logout()
@@ -52,16 +56,16 @@ function Adminsidebar() {
               className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
             >
               <Building2 className="h-4 w-4" />
-              <span className={`${collapsed ? 'hidden' : ''}`}>Tenants view</span>
+              <span className={`${collapsed ? 'hidden' : ''}`}>Tenants  view</span>
             </Link>
 
-            <Link
+            {/* <Link
               to="/dashboard/data-page"
               className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
             >
               <FileText className="h-4 w-4" />
               <span className={`${collapsed ? 'hidden' : ''}`}>Tenants Data view</span>
-            </Link>
+            </Link> */}
 
             <Link
               to="/dashboard/tenant-analytics"
@@ -84,15 +88,15 @@ function Adminsidebar() {
               className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
             >
               <Plus className="h-4 w-4" />
-              <span className={`${collapsed ? 'hidden' : ''}`}>Create Tenant</span>
+              <span className={`${collapsed ? 'hidden' : ''}`}>Create Tenant Data</span>
             </Link>
-            <Link
+            {/* <Link
               to="/dashboard/tenant-data"
               className="flex items-center gap-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-200"
             >
               <FileText className="h-4 w-4" />
               <span className={`${collapsed ? 'hidden' : ''}`}>Tenant Data Form</span>
-            </Link>
+            </Link> */}
 
             
            
@@ -107,8 +111,8 @@ function Adminsidebar() {
           <div className="flex items-center gap-2 px-4 py-2">
             <div className="h-6 w-6 rounded-full bg-gray-300"></div>
             <div className={`flex flex-col ${collapsed ? 'hidden' : ''}`}>
-              <span className="text-sm font-medium">John Doe</span>
-              <span className="text-xs text-gray-500">Admin</span>
+              <span className="text-sm font-medium">{username}</span>
+              <span className="text-xs text-gray-500">Tenant</span>
             </div>
             <ChevronDown className={`ml-auto h-4 w-4 ${collapsed ? 'hidden' : ''}`} />
           </div>

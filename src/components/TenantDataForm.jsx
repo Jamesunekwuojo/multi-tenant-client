@@ -1,10 +1,13 @@
 import { useState } from "react";
+import { createTenantData } from "../services/api.js";
 
 const TenantDataForm = ({ onSubmit, tenantId }) => {
   const [data, setData] = useState( "");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+    await createTenantData({ tenantId, data });
+    setData("");
     onSubmit({ tenantId, data });
   };
 
@@ -24,13 +27,7 @@ const TenantDataForm = ({ onSubmit, tenantId }) => {
               Tenant Data
             </label> */}
 
-            <textarea
-            className="w-full"
-              placeholder="Enter tenant data"
-              value={data}
-              onChange={(e) => setData(e.target.value)}
-              required
-            />
+         
           </div>
         </div>
 

@@ -1,0 +1,17 @@
+# POST http://localhost:3000/api/admin/signup
+# Content-Type: application/json
+
+# {
+#   "email": "godswillemmanueljames@gmail.com",
+#   "password": "password",
+#   "name": "Godswill Emmanuel James"
+# }
+
+
+POST http://localhost:3000/api/tenants
+Content-Type: application/json
+
+{
+  "name": "godswil",
+  "subdomain": "computer science"
+}

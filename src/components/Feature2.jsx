@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 const Feature2 = () => {
+  const token = localStorage.getItem("token");
   return (
     <>
       <section className="container py-24 sm:py-32">
@@ -16,11 +17,25 @@ const Feature2 = () => {
             </p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-2">
-            <Link href="/signup">
-              <button  className="inline-flex items-center gap-2 py-4 px-4 bg-black text-white hover:bg-black rounded-md cursor-pointer">
-                Sign Up Now <ArrowRight className="h-4 w-4" />
-              </button>
-            </Link>
+          {
+            token ? (
+              <Link
+                to="/dashboard"
+                className="flex items-center gap-2 px-4 py-4  text-white bg-black rounded-md hover:bg-black"
+              >
+                <span>Go to Dashboard</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            ) : (
+              <Link
+                to="/signup"
+                className="flex items-center gap-2 px-4 py-4  text-white bg-black rounded-md hover:bg-black"
+              >
+                <span>Get Started</span>
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            )
+          }
           </div>
         </div>
       </section>
@@ -29,3 +44,5 @@ const Feature2 = () => {
 };
 
 export default Feature2;
+
+

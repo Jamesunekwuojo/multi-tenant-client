@@ -1,15 +1,12 @@
-import { Link } from "react-router-dom";
-import { Building2 } from "lucide-react";
-import { createTenant } from "../services/api";
+
+import { updateTenant } from "../services/api";
 
 import Swal from "sweetalert2";
 
 import { useState } from "react";
 
-export default function TenantForm() {
-  // const [name, setName] = useState( "");
-  // const [subdomain, setSubdomain] = useState( "");
-
+export default function UpdateForm() {
+  
   const [formData, setFormData] = useState({
     name: "",
     subdomain: "",
@@ -20,7 +17,7 @@ export default function TenantForm() {
     e.preventDefault();
 
     try {
-      const result = await createTenant(formData);
+      const result = await updateTenant(formData);
 
       Swal.fire({
         title: "Success",
@@ -51,7 +48,7 @@ export default function TenantForm() {
     <div className="flex wrap min-h-screen flex-col items-center  bg-gray-100 p-4">
       <div className="w-full max-w-md bg-white rounded-xl shadow-md p-6">
         <div className="space-y-1 mb-6">
-          <h2 className="text-2xl font-bold">Add  Data </h2>
+          <h2 className="text-2xl font-bold">Update  Data </h2>
           <p className="text-gray-600">Enter information</p>
         </div>
 
@@ -95,7 +92,7 @@ export default function TenantForm() {
             type="submit"
             className="w-full rounded-md bg-black py-2 text-white text-sm font-medium cursor-pointer hover:bg-black"
           >
-            Add Tenant
+            Update data
           </button>
         </form>
       </div>

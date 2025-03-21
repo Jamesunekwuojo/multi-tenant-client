@@ -1,15 +1,17 @@
 import { Link } from "react-router-dom";
 import { Building2 } from "lucide-react";
 import { useAuth } from "../customHook/useAuth.jsx";
-
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+
+
 
 import { useState } from "react";
 
 export default function Signup() {
   const { signup } = useAuth();
-  const navigate = useNavigate();
+
+  const navigate = useNavigate()
+
 
   const [formData, setFormData] = useState({
     name: "",
@@ -28,26 +30,16 @@ export default function Signup() {
     try {
       const result = await signup(formData);
 
+      navigate("/dashbaord")
+
       if (result.success) {
         console.log("User created successfully");
 
-        Swal.fire({
-          title: "Success",
-          text: "Signup  successfullly",
-          icon: "success",
-          confirmButtonText: "Ok",
-        }).then(() => {
-          navigate("/dashboard");
-        });
+      
       }
     } catch (error) {
       console.log(error.message);
-      Swal.fire({
-        title: "Error",
-        text: "Error signing uo",
-        icon: "error",
-        confirmButtonText: "Ok",
-      })
+   
     }
   };
   return (
@@ -59,7 +51,7 @@ export default function Signup() {
 
       <div className="w-full max-w-md bg-white rounded-xl shadow-md p-6">
         <div className="space-y-1 mb-6">
-          <h2 className="text-2xl font-bold">Create an account</h2>
+          <h2 className="text-2xl font-bold">Create account as tenant</h2>
           <p className="text-gray-600">
             Enter your information to create an account
           </p>
@@ -69,7 +61,7 @@ export default function Signup() {
           <div className="grid grid-cols-1 gap-4">
             <div className="space-y-2">
               <label htmlFor="Name" className="block text-sm font-medium">
-                Admin name
+                Tenat name
               </label>
               <input
                 type="text"
@@ -127,3 +119,5 @@ export default function Signup() {
     </div>
   );
 }
+
+

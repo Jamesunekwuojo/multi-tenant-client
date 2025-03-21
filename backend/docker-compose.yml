@@ -1,0 +1,53 @@
+version: '3.8'
+
+services:
+  # Config Server Replica Set
+  configsvr:
+    image: mongo:6.0
+    command: ["mongod", "--configsvr", "--replSet", "customConfigReplSet", "--port", "27119"]
+    volumes:
+      - configdb:/data/db
+    ports:
+      - "27119:27119"
+  
+  # Shard Alpha Replica Set
+  shard_alpha:
+    image: mongo:6.0
+    command: ["mongod", "--shardsvr", "--replSet", "customShardAlpha", "--port", "27116"]
+    volumes:
+      - shardalphadb:/data/db
+    ports:
+      - "27116:27116"
+  
+  # Shard Beta Replica Set
+  shard_beta:
+    image: mongo:6.0
+    command: ["mongod", "--shardsvr", "--replSet", "customShardBeta", "--port", "27115"]
+    volumes:
+      - shardbetadb:/data/db
+    ports:
+      - "27115:27115"
+
+  # Mongos Router
+  mongos:
+    image: mongo:6.0
+    depends_on:
+      - configsvr
+      - shard_alpha
+      - shard_beta
+    command: [
+      "mongos",
+      "--configdb", "customConfigReplSet/configsvr:27119",
+      "--port", "27114"
+    ]
+    ports:
+      - "27114:27114"
+    volumes:
+      - mongosdb:/data/db
+
+volumes:
+  configdb:
+  shardalphadb:
+  shardbetadb:
+  mongosdb:
+

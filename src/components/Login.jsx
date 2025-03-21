@@ -2,13 +2,15 @@ import { Link } from "react-router-dom";
 import { Building2 } from "lucide-react";
 import { useAuth } from "../customHook/useAuth.jsx";
 import { useState } from "react";
-import Swal from "sweetalert2";
 
 import { useNavigate } from "react-router-dom";
 
+
 export default function Login() {
   const { login } = useAuth();
-  const navigate = useNavigate();
+
+  const navigate = useNavigate()
+  
 
   const [formData, setFormData] = useState({
     email: "",
@@ -26,16 +28,13 @@ export default function Login() {
     try {
       const result = await login(formData);
 
+      navigate("/dashboard")
+
+    
+
       if (result.success) {
         console.log("User login successfully");
-        Swal.fire({
-          title: "Log in Successful",
-          text: "Logged in successfullly",
-          icon: "success",
-          confirmButtonText: "Ok",
-        }).then(() => {
-        });
-        navigate("/dashboard");
+      
        
       }
     } catch (error) {
@@ -87,6 +86,7 @@ export default function Login() {
             </div>
             <input
               name="password"
+              onChange={handleChange}
               type="password"
               className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
             />

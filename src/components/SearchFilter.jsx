@@ -16,6 +16,7 @@ const SearchFilter = ({ onSearch, onFilter }) => {
 
     return (
         <div className="w-full flex justify-center items-center gap-2 py-4">
+            <form >
             <input
                 type="text"
                 placeholder="Search tenants..."
@@ -23,15 +24,12 @@ const SearchFilter = ({ onSearch, onFilter }) => {
                 onChange={handleSearch}
                 className="px-4 py-2 border rounded"
             />
-            <select
-                value={filter}
-                onChange={handleFilter}
-                className="px-4 py-2 border rounded"
-            >
-                <option value="">All</option>
-                <option value="active">Active</option>
-                <option value="inactive">Inactive</option>
-            </select>
+            
+            <button className='p-4'>Seacrh</button>
+
+            </form>
+           
+        
         </div>
     );
 };
