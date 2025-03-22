@@ -19,12 +19,21 @@ api.interceptors.request.use((config) => {
     return config;
 });
 
+// Interceptor to handle expired tokens
+api.interceptors.response.use(
+    (response) => response, // Pass successful responses
+    (error) => {
+        if (error.response && error.response.status === 401) {
+            console.error("Token expired. Logging out...");
+            localStorage.removeItem("token"); // Remove token from localStorage
+            window.location.href = "/login"; // Redirect to login page
+        }
+        return Promise.reject(error);
+    }
+);
 // Admin apis
 
-export const userFetch =  () => api.get("/api/admin", {
-    credentials: "include", // Include cookies for session-based auth
-    withCredentials: true,
-});
+export const userFetch =  () => api.get("/api/authcheck");
 
 
 export const loginUser = (loginData) => api.post('/api/admin/login', loginData);
@@ -36,15 +45,20 @@ export const signupUser = (signupData) => api.post('/api/admin/signup', signupDa
 
 // Tenant api
 
-export const getTenants = () => api.get('/api/tenants');
+export const getTenants = (page) => api.get(`/api/tenants?${page}&limit=5`);
+
 
 export const createTenant = (tenant) => api.post('/api/tenants', tenant);
 
-export const updateTenant = (id, tenant) => api.put(`/api/tenants/${id}`, tenant);
+export const updateTenant = (id) => api.put(`/api/tenants/${id}`);
 
 export const deleteTenant = (id) => api.delete(`/api/tenants/${id}`);
 
+export const getTenantId = (id) => api.get(`/api/tenants/${id}`);
+
 export const getDataUsage = () => api.get('/api/data-usage');
+
+
 
 // Tenant Data API
 

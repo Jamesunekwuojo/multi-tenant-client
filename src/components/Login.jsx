@@ -5,9 +5,12 @@ import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 
+
 export default function Login() {
   const { login } = useAuth();
+
   const navigate = useNavigate()
+  
 
   const [formData, setFormData] = useState({
     email: "",
@@ -25,9 +28,14 @@ export default function Login() {
     try {
       const result = await login(formData);
 
+      navigate("/dashboard")
+
+    
+
       if (result.success) {
         console.log("User login successfully");
-        navigate("/dashboard");
+      
+       
       }
     } catch (error) {
       console.log(error);
@@ -77,8 +85,8 @@ export default function Login() {
               </Link>
             </div>
             <input
-
               name="password"
+              onChange={handleChange}
               type="password"
               className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
             />

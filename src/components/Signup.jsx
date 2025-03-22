@@ -1,42 +1,46 @@
 import { Link } from "react-router-dom";
 import { Building2 } from "lucide-react";
 import { useAuth } from "../customHook/useAuth.jsx";
-
 import { useNavigate } from "react-router-dom";
+
+
 
 import { useState } from "react";
 
 export default function Signup() {
-  const {signup} = useAuth();
-  const navigate = useNavigate();
+  const { signup } = useAuth();
 
-  const [formData, setFormData] = useState({name: "", email: "", password: ""})
+  const navigate = useNavigate()
+
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
   const handleChange = async (e) => {
-    const {name, value} = e.target;
-    setFormData({...formData, [name]: value})
-  }
-
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-
       const result = await signup(formData);
 
-      if(result.success){
+      navigate("/dashbaord")
+
+      if (result.success) {
         console.log("User created successfully");
-        navigate("/dashboard");
-        
-      }
 
-    } catch (error) {
       
+      }
+    } catch (error) {
       console.log(error.message);
+   
     }
-
-  
   };
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-4">
@@ -47,15 +51,17 @@ export default function Signup() {
 
       <div className="w-full max-w-md bg-white rounded-xl shadow-md p-6">
         <div className="space-y-1 mb-6">
-          <h2 className="text-2xl font-bold">Create an account</h2>
-          <p className="text-gray-600">Enter your information to create an account</p>
+          <h2 className="text-2xl font-bold">Create account as tenant</h2>
+          <p className="text-gray-600">
+            Enter your information to create an account
+          </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 gap-4">
             <div className="space-y-2">
               <label htmlFor="Name" className="block text-sm font-medium">
-                Admin name
+                Tenat name
               </label>
               <input
                 type="text"
@@ -66,7 +72,6 @@ export default function Signup() {
                 className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
               />
             </div>
-           
           </div>
 
           <div className="space-y-2">
@@ -85,7 +90,6 @@ export default function Signup() {
 
           <div className="space-y-2">
             <label htmlFor="password" className="block text-sm font-medium">
-
               Password
             </label>
             <input
@@ -96,8 +100,6 @@ export default function Signup() {
               className="w-full rounded-md border border-gray-300 p-2 text-sm focus:border-blue-500 focus:outline-none"
             />
           </div>
-
-          
 
           <button
             type="submit"
@@ -117,3 +119,5 @@ export default function Signup() {
     </div>
   );
 }
+
+
