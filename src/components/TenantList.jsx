@@ -434,6 +434,7 @@ import { getTenants, deleteTenant } from "../services/api";
 import { Link } from "react-router-dom";
 import { Pencil, Trash2, Info } from "lucide-react";
 import UpdateForm from "./UpdateForm";
+import  Swal from "sweetalert2";
 
 const TenantList = () => {
   const [tenants, setTenants] = useState([]);
@@ -479,9 +480,31 @@ const TenantList = () => {
   
 
   const handleDelete = async (id) => {
+
+    
+
     try {
-      await deleteTenant(id);
-      setTenants((prev) => prev.filter((tenant) => tenant.id !== id));
+   
+
+      Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          await deleteTenant(id);
+          setTenants((prev) => prev.filter((tenant) => tenant.id !== id));
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success'
+          )
+        }
+      })
     } catch (error) {
       console.error("Error deleting tenant:", error);
     }
