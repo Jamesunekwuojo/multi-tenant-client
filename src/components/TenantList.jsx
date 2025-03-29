@@ -448,9 +448,18 @@ const TenantList = () => {
       const response = await getTenants(page);
       const tenantsData = response?.data?.tenants || [];
 
-      setTenants((prev) =>
-        page === 1 ? tenantsData : [...prev, ...tenantsData]
-      );
+      // setTenants((prev) =>
+      //   page === 1 ? tenantsData : [...prev, ...tenantsData]
+      // );
+
+      setTenants((prev) => {
+        const uniqueTenants = [...prev, ...tenantsData].filter(
+          (tenant, index, self) =>
+            index === self.findIndex((t) => t.id === tenant.id)
+        );
+        return uniqueTenants;
+      });
+      
     } catch (error) {
       console.error("Error fetching tenants:", error);
     }
