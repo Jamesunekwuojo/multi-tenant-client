@@ -22,24 +22,26 @@ export default function TenantForm() {
     try {
       const result = await createTenant(formData);
 
-      Swal.fire({
-        title: "Success",
-        text: result?.data?.message ||"Tenant created successfully",
-        icon: "success",
-        confirmButtonText: "Ok",
-      });
+      console.log(result);
 
-      setFormData({
-        name: "",
-        subdomain: "",
-        data: "",
-      })
+      if (result.status == 201) {
+        setFormData({
+          name: "",
+          subdomain: "",
+          data: "",
+        });
+        console.log("Tenant created successfully");
+
+        Swal.fire({
+          title: "Success",
+          text: result?.data?.message || "Tenant created successfully",
+          icon: "success",
+          confirmButtonText: "Ok",
+        });
+      }
     } catch (error) {
       console.log(error);
-
     }
-
-  
   };
 
   const handleChange = async (e) => {
@@ -51,7 +53,7 @@ export default function TenantForm() {
     <div className="flex wrap min-h-screen flex-col items-center  bg-gray-100 p-4">
       <div className="w-full max-w-md bg-white rounded-xl shadow-md p-6">
         <div className="space-y-1 mb-6">
-          <h2 className="text-2xl font-bold">Add  Data </h2>
+          <h2 className="text-2xl font-bold">Add Data </h2>
           <p className="text-gray-600">Enter information</p>
         </div>
 
