@@ -174,7 +174,6 @@ export default function UpdateForm({ tenant, onClose }) {
           <label className="block text-sm font-medium text-black">Tenant Name:</label>
           <input
             name="name"
-            
             onChange={handleChange}
             placeholder="Tenant Name"
             className="w-full rounded-md border p-2 text-sm border-black text-gray-700 focus:border-blue-500 focus:outline-none"
